@@ -7,35 +7,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface Service<T> {
 
 	/**
-	 * lista todos os produtos na base de dados
-	 * @return Iterable<Produto>
+	 * Lista todas as entidades
+	 * @return Iterable<T>
 	 */
 	public Iterable<T> listar();
 	
 	/**
-	 * Busca um produto pelo id no banco de dados 
-	 * @param id
-	 * @return Optional<Produto>
+	 * Busca uma entidade pelo id
+	 * @param Integer id
+	 * @return Optional<T>
 	 */
 	public Optional<T> buscar(Integer id);
 	
 	/**
-	 * Cadastra ou altera um  produto no banco de dados
-	 * @param produto
-	 * @return Produto
+	 * Persiste uma entidade
+	 * @param Entidade <T>
+	 * @return <T>
 	 * @throws Exception
 	 */
 	public <S extends T> S persistir(@RequestBody S entity) throws Exception;
 	
 	/**
-	 * Deleta um produto do banco de dados pelo seu id
-	 * @param id
+	 * Deleta uma entidade pelo id
+	 * @param Integer id
 	 */
 	public void deletar(Integer id);
 	
 	/**
-	 * verifica se um produto existe no banco de dados pelo seu id
-	 * @param id
+	 * Verifica se existe a entidade baseando no seu id
+	 * @param Integer id
 	 * @return boolean
 	 */
 	public boolean existe(Integer id);
