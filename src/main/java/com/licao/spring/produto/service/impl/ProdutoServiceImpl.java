@@ -27,6 +27,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 		return produtoRepository.findById(id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Produto persistir(Produto produto) throws Exception {
 		return produtoRepository.save(produto);

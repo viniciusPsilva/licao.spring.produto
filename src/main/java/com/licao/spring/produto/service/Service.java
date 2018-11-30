@@ -4,8 +4,6 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.licao.spring.produto.model.Produto;
-
 public interface Service<T> {
 
 	/**
@@ -27,7 +25,7 @@ public interface Service<T> {
 	 * @return Produto
 	 * @throws Exception
 	 */
-	public Produto persistir(@RequestBody T object) throws Exception;
+	public <S extends T> S persistir(@RequestBody S entity) throws Exception;
 	
 	/**
 	 * Deleta um produto do banco de dados pelo seu id

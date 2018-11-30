@@ -39,11 +39,11 @@ public class ProdutoController {
 	public ResponseEntity<Produto> buscar(@PathVariable Integer id) {
 		Optional<Produto> produto = produtoService.buscar(id);
 
-		if (!produto.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		if (produto.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(produto.get());
 		}
 
-		return ResponseEntity.status(HttpStatus.OK).body(produto.get());
+		return ResponseEntity.status(HttpStatus.GONE).build();
 	}
 
 	@PostMapping
@@ -56,33 +56,32 @@ public class ProdutoController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<Produto> atualizar(@RequestBody Produto produto){
+	public ResponseEntity<Produto> atualizar(@RequestBody Produto produto) {
 		try {
-			
+
 			if (produtoService.existe(produto.getId())) {
 				Produto produtoAtualizado = produtoService.persistir(produto);
 				return ResponseEntity.status(HttpStatus.OK).body(produtoAtualizado);
 			}
-			
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			
+
+			return ResponseEntity.status(HttpStatus.GONE).build();
+
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
-	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Void> deletar(@PathVariable Integer id){
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
 		
-		try {
-			produtoService.deletar(id);			
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		if (produtoService.existe(id)) {
+			produtoService.deletar(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		return ResponseEntity.status(HttpStatus.GONE).build();
 	}
 
 }
