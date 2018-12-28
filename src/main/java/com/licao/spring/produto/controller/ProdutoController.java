@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.licao.spring.produto.model.Produto;
+import com.licao.spring.Entidades.models.Produto;
 import com.licao.spring.produto.service.ProdutoService;
 
 @Controller

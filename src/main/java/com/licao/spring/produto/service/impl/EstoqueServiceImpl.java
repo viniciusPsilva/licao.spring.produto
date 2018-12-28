@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.licao.spring.produto.model.Estoque;
+import com.licao.spring.Entidades.models.Estoque;
 import com.licao.spring.produto.repository.EstoqueRepository;
 import com.licao.spring.produto.service.EstoqueService;
 
