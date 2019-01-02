@@ -43,7 +43,7 @@ public class ProdutoController {
 			return ResponseEntity.status(HttpStatus.OK).body(produto.get());
 		}
 
-		return ResponseEntity.status(HttpStatus.GONE).build();
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 
 	@PostMapping
@@ -66,7 +66,7 @@ public class ProdutoController {
 				return ResponseEntity.status(HttpStatus.OK).body(produtoAtualizado);
 			}
 
-			return ResponseEntity.status(HttpStatus.GONE).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -81,7 +81,7 @@ public class ProdutoController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		
-		return ResponseEntity.status(HttpStatus.GONE).build();
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 
 }
